@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_theme">#51830e</color>
+    <color name="color_theme_dark">#335309</color>
+    <color name="color_volley_result">#e7f7e7</color>
+</resources>
