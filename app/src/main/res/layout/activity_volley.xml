@@ -5,23 +5,37 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onGetStringClick"
-        android:text="@string/string_data" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onGetJsonClick"
-        android:text="@string/json_data" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onGetStringClick"
+            android:text="@string/string_data" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onGetJsonClick"
+            android:text="@string/json_data" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onPostJsonClick"
+            android:text="@string/json_data_post" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_result"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
-        android:scrollbars="vertical"
-        android:background="@color/color_volley_result" />
+        android:background="@color/color_volley_result"
+        android:scrollbars="vertical" />
 </LinearLayout>

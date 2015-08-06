@@ -14,7 +14,7 @@ public class MyApplication extends Application {
     private static Context mContext;
 
     public static Context getContext() {
-        return getContext();
+        return mContext;
     }
 
     @Override

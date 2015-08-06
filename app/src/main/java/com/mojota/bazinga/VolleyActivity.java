@@ -12,9 +12,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.mojota.bazinga.connect.GsonPostRequest;
+import com.mojota.bazinga.model.CookDetail;
+import com.mojota.bazinga.utils.ToastUtil;
 
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by mojota on 15-7-31.
@@ -52,7 +57,7 @@ public class VolleyActivity extends AppCompatActivity {
 
     public void onGetJsonClick(View view) {
         RequestQueue rq = MyApplication.getRequestQueue();
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, new JSONObject(), new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 mTvResult.setText(jsonObject.toString());
@@ -65,5 +70,26 @@ public class VolleyActivity extends AppCompatActivity {
         });
 
         rq.add(jsonObjectRequest);
+    }
+
+    public void onPostJsonClick(View view) {
+        RequestQueue rq = MyApplication.getRequestQueue();
+        String url = "http://apis.juhe.cn/cook/queryid";
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("key", "b954e4feff60d14fe3d32538641c1b36");
+        params.put("id", "1001");
+        GsonPostRequest<CookDetail> request = new GsonPostRequest<CookDetail>(url, params, CookDetail.class, new Response.Listener<CookDetail>() {
+            @Override
+            public void onResponse(CookDetail cookDetail) {
+                mTvResult.setText(cookDetail.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                ToastUtil.showToast("error");
+            }
+        });
+
+        rq.add(request);
     }
 }

@@ -1,6 +1,8 @@
-package com.mojota.bazinga;
+package com.mojota.bazinga.utils;
 
 import android.widget.Toast;
+
+import com.mojota.bazinga.MyApplication;
 
 /**
  * Created by mojota on 15-8-4.
