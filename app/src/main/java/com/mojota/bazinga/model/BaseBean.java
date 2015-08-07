@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by mojota on 15-8-6.
  */
-public class BaseType implements Serializable {
+public class BaseBean implements Serializable {
 
     private String resultcode;
     private String reason;

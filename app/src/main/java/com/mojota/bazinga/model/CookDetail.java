@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by mojota on 15-8-6.
  */
-public class CookDetail extends BaseType {
+public class CookDetail extends BaseBean {
 
     private Result result;
 
