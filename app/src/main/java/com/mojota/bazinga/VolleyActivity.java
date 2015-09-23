@@ -7,12 +7,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.mojota.bazinga.connect.GsonPostRequest;
+import com.mojota.bazinga.connect.GsonRequest;
+import com.mojota.bazinga.connect.VolleyUtil;
 import com.mojota.bazinga.model.CookDetail;
 import com.mojota.bazinga.utils.ToastUtil;
 
@@ -37,8 +37,8 @@ public class VolleyActivity extends AppCompatActivity {
     }
 
     public void onGetStringClick(View view) {
-        RequestQueue rq = MyApplication.getRequestQueue();
-        StringRequest stringRequest = new StringRequest(URL, new Response.Listener<String>() {
+        String url = "http://api.juheapi.com/japi/toh?key=9ca927c6a05534847004e94d7d850fdb&v=1.0&month=09&day=22";
+        StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String s) {
@@ -51,12 +51,11 @@ public class VolleyActivity extends AppCompatActivity {
                 ToastUtil.showToast("error");
             }
         });
-        rq.add(stringRequest);
+        VolleyUtil.addToRequestQueue(stringRequest);
 
     }
 
     public void onGetJsonClick(View view) {
-        RequestQueue rq = MyApplication.getRequestQueue();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
@@ -69,16 +68,15 @@ public class VolleyActivity extends AppCompatActivity {
             }
         });
 
-        rq.add(jsonObjectRequest);
+        VolleyUtil.addToRequestQueue(jsonObjectRequest);
     }
 
     public void onPostJsonClick(View view) {
-        RequestQueue rq = MyApplication.getRequestQueue();
         String url = "http://apis.juhe.cn/cook/queryid";
         Map<String, String> params = new HashMap<String, String>();
         params.put("key", "b954e4feff60d14fe3d32538641c1b36");
         params.put("id", "1001");
-        GsonPostRequest<CookDetail> request = new GsonPostRequest<CookDetail>(url, params, CookDetail.class, new Response.Listener<CookDetail>() {
+        GsonRequest<CookDetail> request = new GsonRequest<CookDetail>(Request.Method.POST, url, params, CookDetail.class, new Response.Listener<CookDetail>() {
             @Override
             public void onResponse(CookDetail cookDetail) {
                 mTvResult.setText(cookDetail.toString());
@@ -90,6 +88,6 @@ public class VolleyActivity extends AppCompatActivity {
             }
         });
 
-        rq.add(request);
+        VolleyUtil.addToRequestQueue(request);
     }
 }
