@@ -1,7 +1,9 @@
 package com.mojota.bazinga;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.TextView;
@@ -24,14 +26,21 @@ import java.util.Map;
 /**
  * Created by mojota on 15-7-31.
  */
-public class VolleyActivity extends AppCompatActivity {
+public class VolleyActivity extends ToolBarActivity implements TabLayout.OnTabSelectedListener {
     private static final String URL = "http://apis.juhe.cn/cook/queryid?key=b954e4feff60d14fe3d32538641c1b36&id=1001";
     private TextView mTvResult;
+    private TabLayout mTabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volley);
+        setTitle(R.string.volley);
+        mTabLayout = (TabLayout) findViewById(R.id.tablayout);
+        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.string_data));
+        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.json_data));
+        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.json_data_post));
+        mTabLayout.setOnTabSelectedListener(this);
         mTvResult = (TextView) findViewById(R.id.tv_result);
         mTvResult.setMovementMethod(ScrollingMovementMethod.getInstance());
     }
@@ -89,5 +98,34 @@ public class VolleyActivity extends AppCompatActivity {
         });
 
         VolleyUtil.addToRequestQueue(request);
+    }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        switch (tab.getPosition()) {
+            case 0:
+                onGetStringClick(null);
+                break;
+            case 1:
+                onGetJsonClick(null);
+                break;
+            case 2:
+                onPostJsonClick(null);
+                break;
+            default:
+                break;
+
+        }
+
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
     }
 }
