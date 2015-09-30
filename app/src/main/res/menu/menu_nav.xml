@@ -1,0 +1,31 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_one"
+        android:icon="@mipmap/ic_nav"
+        android:title="one" />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_group_one"
+            android:icon="@mipmap/ic_nav"
+            android:title="group_one" />
+        <item
+            android:id="@+id/nav_group_two"
+            android:icon="@mipmap/ic_nav"
+            android:title="group_two">
+            <menu>
+                <item
+                    android:id="@+id/group_two_menu_one"
+                    android:icon="@mipmap/ic_nav"
+                    android:title="group_two_menu_one" />
+                <item
+                    android:id="@+id/group_two_menu_two"
+                    android:icon="@mipmap/ic_nav"
+                    android:title="group_two_menu_two" />
+            </menu>
+        </item>
+        <item
+            android:id="@+id/nav_group_three"
+            android:icon="@mipmap/ic_nav"
+            android:title="group_three" />
+    </group>
+</menu>
