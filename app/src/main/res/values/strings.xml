@@ -9,4 +9,10 @@
     <string name="title_activity_base">BaseActivity</string>
     <string name="title_activity_blank">BlankActivity</string>
     <string name="str_no_name">无名氏</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="str_tab_one">tab_one</string>
+    <string name="str_tab_two">tab_two</string>
+    <string name="str_tab_three">tab_three</string>
 </resources>

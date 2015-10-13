@@ -1,19 +1,30 @@
 package com.mojota.bazinga;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class MainActivity extends ToolBarActivity {
+import java.util.ArrayList;
+
+public class MainActivity extends ToolBarActivity implements ThreeFragment.OnFragmentInteractionListener {
 
     private NavigationView mNavigation;
     private DrawerLayout mDrawerLayout;
+    private TabLayout mTab;
+    private ViewPager mViewPager;
+    private ArrayList<String> mTabTitleList;
+    private ArrayList<Fragment> mFragmentList;
+    private ViewPagerAdapter mPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +45,52 @@ public class MainActivity extends ToolBarActivity {
                 return false;
             }
         });
+        mTab = (TabLayout) findViewById(R.id.tab);
+        mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        initList();
+        mPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        mViewPager.setAdapter(mPagerAdapter);
+        mTab.setTabsFromPagerAdapter(mPagerAdapter);
+        mTab.setupWithViewPager(mViewPager);
+        mTab.setTabTextColors(Color.parseColor("#335309"),Color.WHITE);
+    }
+
+    private void initList() {
+        mTabTitleList = new ArrayList<String>();
+        mTabTitleList.add(getString(R.string.str_tab_one));
+        mTabTitleList.add(getString(R.string.str_tab_two));
+        mTabTitleList.add(getString(R.string.str_tab_three));
+        mFragmentList = new ArrayList<>();
+        mFragmentList.add(OneFragment.newInstance("", ""));
+        mFragmentList.add(TwoFragment.newInstance("", ""));
+        mFragmentList.add(ThreeFragment.newInstance("", ""));
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    class ViewPagerAdapter extends FragmentStatePagerAdapter {
+
+        public ViewPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mTabTitleList.get(position);
+        }
     }
 
     public void onVolleyClick(View view) {

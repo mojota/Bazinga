@@ -1,0 +1,13 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mojota.bazinga.OneFragment">
+
+    <Button
+        android:id="@+id/bt_volley"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onVolleyClick"
+        android:text="@string/volley" />
+</FrameLayout>
