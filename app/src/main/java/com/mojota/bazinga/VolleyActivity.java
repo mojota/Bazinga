@@ -35,7 +35,7 @@ public class VolleyActivity extends ToolBarActivity implements TabLayout.OnTabSe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volley);
-        setTitle(R.string.volley);
+        setTitle(R.string.str_volley);
         mTabLayout = (TabLayout) findViewById(R.id.tablayout);
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.string_data),true);
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.json_data),false);

@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".VolleyActivity" />
+        <activity android:name=".TextInputActivity" />
         <activity
             android:name=".ToolBarActivity"
             android:label="@string/title_activity_base"

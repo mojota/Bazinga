@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +14,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
@@ -25,18 +27,31 @@ public class MainActivity extends ToolBarActivity implements ThreeFragment.OnFra
     private ArrayList<String> mTabTitleList;
     private ArrayList<Fragment> mFragmentList;
     private ViewPagerAdapter mPagerAdapter;
+    private LinearLayout mLayoutMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        mLayoutMain = (LinearLayout) findViewById(R.id.layout_main);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mNavigation = (NavigationView) findViewById(R.id.view_navigation);
         mNavigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
+                    case R.id.group_two_menu_one:
+                        Snackbar.make(mLayoutMain, R.string.str_group_one, Snackbar.LENGTH_SHORT).show();
+                        break;
+                    case R.id.group_two_menu_two:
+                        Snackbar.make(mLayoutMain, R.string.str_group_two_menu_two, Snackbar.LENGTH_LONG).setAction(R.string.cancle, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                            }
+                        }).setActionTextColor(Color.parseColor("#00BCD4")).show();
+                        break;
                     default:
                         break;
                 }
@@ -52,7 +67,7 @@ public class MainActivity extends ToolBarActivity implements ThreeFragment.OnFra
         mViewPager.setAdapter(mPagerAdapter);
         mTab.setTabsFromPagerAdapter(mPagerAdapter);
         mTab.setupWithViewPager(mViewPager);
-        mTab.setTabTextColors(Color.parseColor("#335309"),Color.WHITE);
+        mTab.setTabTextColors(Color.parseColor("#335309"), Color.WHITE);
     }
 
     private void initList() {
@@ -93,8 +108,4 @@ public class MainActivity extends ToolBarActivity implements ThreeFragment.OnFra
         }
     }
 
-    public void onVolleyClick(View view) {
-        Intent intent = new Intent(MainActivity.this, VolleyActivity.class);
-        startActivity(intent);
-    }
 }

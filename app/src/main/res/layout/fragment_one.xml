@@ -1,7 +1,8 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.mojota.bazinga.OneFragment">
 
     <Button
@@ -9,5 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onVolleyClick"
-        android:text="@string/volley" />
-</FrameLayout>
+        android:text="@string/str_volley" />
+
+    <Button
+        android:id="@+id/bt_textinput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onTextInputClick"
+        android:text="@string/str_textInputLayout" />
+</LinearLayout>
