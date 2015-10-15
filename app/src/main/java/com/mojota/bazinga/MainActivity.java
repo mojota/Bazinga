@@ -3,6 +3,7 @@ package com.mojota.bazinga;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -15,10 +16,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
-public class MainActivity extends ToolBarActivity implements ThreeFragment.OnFragmentInteractionListener {
+public class MainActivity extends ToolBarActivity implements View.OnClickListener,ThreeFragment.OnFragmentInteractionListener {
 
     private NavigationView mNavigation;
     private DrawerLayout mDrawerLayout;
@@ -27,15 +29,19 @@ public class MainActivity extends ToolBarActivity implements ThreeFragment.OnFra
     private ArrayList<String> mTabTitleList;
     private ArrayList<Fragment> mFragmentList;
     private ViewPagerAdapter mPagerAdapter;
-    private LinearLayout mLayoutMain;
+    private RelativeLayout mLayoutMain;
+    private FloatingActionButton mFAB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        mLayoutMain = (LinearLayout) findViewById(R.id.layout_main);
+        mLayoutMain = (RelativeLayout) findViewById(R.id.layout_main);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mFAB = (FloatingActionButton)findViewById(R.id.fab);
+        mFAB.setOnClickListener(this);
+        mFAB.hide();
         mNavigation = (NavigationView) findViewById(R.id.view_navigation);
         mNavigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -84,6 +90,17 @@ public class MainActivity extends ToolBarActivity implements ThreeFragment.OnFra
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.fab:
+                Snackbar.make(mLayoutMain,"fab clicked",Snackbar.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
     }
 
     class ViewPagerAdapter extends FragmentStatePagerAdapter {
