@@ -21,6 +21,9 @@
     <string name="str_group_two">group_two</string>
     <string name="str_group_three">group_three</string>
     <string name="str_one">one</string>
+    <string name="str_two">two</string>
+    <string name="str_three">three</string>
+    <string name="str_four">four</string>
     <string name="str_group_two_menu_one">group_two_menu_one</string>
     <string name="str_group_two_menu_two">group_two_menu_two</string>
     <string name="cancle">撤消</string>

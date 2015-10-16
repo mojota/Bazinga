@@ -4,4 +4,6 @@
     <color name="color_theme_dark">#335309</color>
     <color name="color_volley_result">#e7f7e7</color>
     <color name="color_google">#00BCD4</color>
+    <color name="color_normal">#3DB3BC</color>
+    <color name="color_pressed">#2DB2CA</color>
 </resources>

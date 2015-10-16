@@ -28,4 +28,16 @@
             android:icon="@mipmap/ic_nav"
             android:title="@string/str_group_three" />
     </group>
+    <item
+        android:id="@+id/nav_two"
+        android:icon="@mipmap/ic_nav"
+        android:title="@string/str_two" />
+    <item
+        android:id="@+id/nav_three"
+        android:icon="@mipmap/ic_nav"
+        android:title="@string/str_three" />
+    <item
+        android:id="@+id/nav_four"
+        android:icon="@mipmap/ic_nav"
+        android:title="@string/str_four" />
 </menu>

@@ -15,7 +15,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
@@ -41,7 +40,6 @@ public class MainActivity extends ToolBarActivity implements View.OnClickListene
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mFAB = (FloatingActionButton)findViewById(R.id.fab);
         mFAB.setOnClickListener(this);
-        mFAB.hide();
         mNavigation = (NavigationView) findViewById(R.id.view_navigation);
         mNavigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
