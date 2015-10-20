@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,7 +26,7 @@ public class ToolBarActivity extends AppCompatActivity {
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(R.layout.view_header);
-        LinearLayout parentView = (LinearLayout) findViewById(R.id.layout_root);
+        ViewGroup parentView = (ViewGroup) findViewById(R.id.layout_root);
         View view = getLayoutInflater().inflate(layoutResID, parentView, false);
         parentView.addView(view);
         initToolBar();

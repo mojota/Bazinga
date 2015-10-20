@@ -71,7 +71,6 @@ public class MainActivity extends ToolBarActivity implements View.OnClickListene
         mViewPager.setAdapter(mPagerAdapter);
         mTab.setTabsFromPagerAdapter(mPagerAdapter);
         mTab.setupWithViewPager(mViewPager);
-        mTab.setTabTextColors(Color.parseColor("#335309"), Color.WHITE);
     }
 
     private void initList() {
