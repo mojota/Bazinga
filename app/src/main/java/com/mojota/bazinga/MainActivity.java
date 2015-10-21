@@ -3,6 +3,7 @@ package com.mojota.bazinga;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -13,13 +14,17 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends ToolBarActivity implements View.OnClickListener,ThreeFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, ThreeFragment.OnFragmentInteractionListener {
 
     private NavigationView mNavigation;
     private DrawerLayout mDrawerLayout;
@@ -28,17 +33,27 @@ public class MainActivity extends ToolBarActivity implements View.OnClickListene
     private ArrayList<String> mTabTitleList;
     private ArrayList<Fragment> mFragmentList;
     private ViewPagerAdapter mPagerAdapter;
-    private RelativeLayout mLayoutMain;
+    private ViewGroup mLayoutMain;
     private FloatingActionButton mFAB;
+    private Toolbar mToolBar;
+    private TextView mCenterTitle;
+    private CollapsingToolbarLayout mLayoutCollaps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mToolBar = (Toolbar) findViewById(R.id.toolbar_header);
+        mCenterTitle = (TextView) findViewById(R.id.toolbar_title);
+        setSupportActionBar(mToolBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        mLayoutMain = (RelativeLayout) findViewById(R.id.layout_main);
+        mLayoutMain = (ViewGroup) findViewById(R.id.layout_main);
+        mLayoutCollaps = (CollapsingToolbarLayout) findViewById(R.id.layout_collapsing);
+        mLayoutCollaps.setTitle(getString(R.string.app_name));
+        mLayoutCollaps.setCollapsedTitleTextColor(Color.WHITE);
+        mLayoutCollaps.setExpandedTitleColor(Color.YELLOW);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mFAB = (FloatingActionButton)findViewById(R.id.fab);
+        mFAB = (FloatingActionButton) findViewById(R.id.fab);
         mFAB.setOnClickListener(this);
         mNavigation = (NavigationView) findViewById(R.id.view_navigation);
         mNavigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -91,9 +106,9 @@ public class MainActivity extends ToolBarActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.fab:
-                Snackbar.make(mLayoutMain,"fab clicked",Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(mLayoutMain, "fab clicked", Snackbar.LENGTH_SHORT).show();
                 break;
             default:
                 break;

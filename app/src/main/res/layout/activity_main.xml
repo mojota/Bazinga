@@ -8,36 +8,71 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <android.support.design.widget.CoordinatorLayout
             android:id="@+id/layout_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tab"
+            <android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/color_theme"
-                app:tabTextColor="@color/color_theme_dark"
-                app:tabSelectedTextColor="@color/color_google"
-                app:tabIndicatorColor="@color/color_google"
-                app:tabIndicatorHeight="5dp"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark" />
+                android:background="@mipmap/ic_pic_12"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+                <android.support.design.widget.CollapsingToolbarLayout
+                    android:id="@+id/layout_collapsing"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    app:contentScrim="?attr/colorPrimary"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:minHeight="?attr/actionBarSize"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                        app:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+                        <TextView
+                            android:id="@+id/toolbar_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="@android:color/white"
+                            android:textSize="20dp" />
+
+                    </android.support.v7.widget.Toolbar>
+                </android.support.design.widget.CollapsingToolbarLayout>
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tab"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_theme"
+                    app:tabGravity="center"
+                    app:tabIndicatorColor="@color/color_google"
+                    app:tabIndicatorHeight="5dp"
+                    app:tabSelectedTextColor="@color/color_google"
+                    app:tabTextColor="@color/color_theme_dark"
+                    app:theme="@style/ThemeOverlay.AppCompat.Dark" />
+            </android.support.design.widget.AppBarLayout>
+
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/tab" />
+                android:layout_below="@id/tab"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
+                android:layout_gravity="bottom|right"
                 android:src="@mipmap/ic_add"
                 app:backgroundTint="@color/color_theme" />
 
@@ -45,14 +80,14 @@
                 android:id="@+id/fab_mini"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
                 android:layout_marginBottom="75dp"
                 android:src="@mipmap/ic_like"
                 app:backgroundTint="@color/color_theme"
-                app:fabSize="mini" />
+                app:fabSize="mini"
+                android:layout_gravity="right"
+                app:layout_anchor="@id/toolbar_header" />
 
-        </RelativeLayout>
+        </android.support.design.widget.CoordinatorLayout>
 
         <android.support.design.widget.NavigationView
             android:id="@+id/view_navigation"
