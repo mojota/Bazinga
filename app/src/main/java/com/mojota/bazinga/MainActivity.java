@@ -16,6 +16,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mLayoutCollaps.setTitle(getString(R.string.app_name));
         mLayoutCollaps.setCollapsedTitleTextColor(Color.WHITE);
         mLayoutCollaps.setExpandedTitleColor(Color.YELLOW);
+        mLayoutCollaps.setContentScrimColor(Color.BLACK);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mFAB = (FloatingActionButton) findViewById(R.id.fab);
         mFAB.setOnClickListener(this);
@@ -97,6 +99,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mFragmentList.add(OneFragment.newInstance("", ""));
         mFragmentList.add(TwoFragment.newInstance("", ""));
         mFragmentList.add(ThreeFragment.newInstance("", ""));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
