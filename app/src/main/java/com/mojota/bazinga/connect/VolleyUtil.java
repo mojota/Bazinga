@@ -31,29 +31,34 @@ public class VolleyUtil {
         getRequestQueue().add(request);
     }
 
+
     /**
-     * url拼接参数
+     * url拼接参数,只有get请求时才拼
      */
-    public static String addParams(String url, Map<String, String> map) {
-        StringBuilder strUrl = new StringBuilder(url);
-        try {
-            if (map != null) {
-                strUrl.append("?");
-                for (Map.Entry<String, String> entrySet : map.entrySet()) {
-                    strUrl.append(URLEncoder.encode(entrySet.getKey(), "UTF-8"));
-                    strUrl.append("=");
-                    if (TextUtils.isEmpty(entrySet.getValue())) {
-                        strUrl.append("");
-                    } else {
-                        strUrl.append(URLEncoder.encode(entrySet.getValue(), "UTF-8"));
+    public static String addParams(int method, String url, Map<String, String> map) {
+        if (method == Request.Method.GET) {
+            StringBuilder strUrl = new StringBuilder(url);
+            try {
+                if (map != null) {
+                    strUrl.append("?");
+                    for (Map.Entry<String, String> entrySet : map.entrySet()) {
+                        strUrl.append(URLEncoder.encode(entrySet.getKey(), "UTF-8"));
+                        strUrl.append("=");
+                        if (TextUtils.isEmpty(entrySet.getValue())) {
+                            strUrl.append("");
+                        } else {
+                            strUrl.append(URLEncoder.encode(entrySet.getValue(), "UTF-8"));
+                        }
+                        strUrl.append("&");
                     }
-                    strUrl.append("&");
+                    url = strUrl.toString();
                 }
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
             }
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
         }
-        return strUrl.toString();
+        return url;
+
     }
 
 }

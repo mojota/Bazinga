@@ -48,12 +48,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mCenterTitle = (TextView) findViewById(R.id.toolbar_title);
         setSupportActionBar(mToolBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
         mLayoutMain = (ViewGroup) findViewById(R.id.layout_main);
+
         mLayoutCollaps = (CollapsingToolbarLayout) findViewById(R.id.layout_collapsing);
         mLayoutCollaps.setTitle(getString(R.string.app_name));
         mLayoutCollaps.setCollapsedTitleTextColor(Color.WHITE);
         mLayoutCollaps.setExpandedTitleColor(Color.YELLOW);
-        mLayoutCollaps.setContentScrimColor(Color.BLACK);
+//        mLayoutCollaps.setContentScrimColor(Color.BLACK);
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mFAB = (FloatingActionButton) findViewById(R.id.fab);
         mFAB.setOnClickListener(this);
@@ -81,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return false;
             }
         });
+
         mTab = (TabLayout) findViewById(R.id.tab);
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         initList();

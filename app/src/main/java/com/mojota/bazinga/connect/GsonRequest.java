@@ -21,20 +21,12 @@ public class GsonRequest<T> extends Request<T> {
     private Class<T> mClass;
 
     public GsonRequest(int method, String url, Map<String, String> map, Class<T> clazz,
-            Listener<T> listener, ErrorListener errorListener) {
-        super(method, url, errorListener);
+                       Listener<T> listener, ErrorListener errorListener) {
+        super(method, VolleyUtil.addParams(method, url, map), errorListener);
         mMap = map;
         mListener = listener;
         mGson = new Gson();
         mClass = clazz;
-    }
-
-    /**
-     * 默认get请求
-     */
-    public GsonRequest(String url, Map<String, String> map, Class<T> clazz,
-            Listener<T> listener, ErrorListener errorListener) {
-        this(Method.GET, VolleyUtil.addParams(url, map), null, clazz, listener, errorListener);
     }
 
     @Override
