@@ -51,10 +51,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mLayoutMain = (ViewGroup) findViewById(R.id.layout_main);
 
-        mLayoutCollaps = (CollapsingToolbarLayout) findViewById(R.id.layout_collapsing);
-        mLayoutCollaps.setTitle(getString(R.string.app_name));
-        mLayoutCollaps.setCollapsedTitleTextColor(Color.WHITE);
-        mLayoutCollaps.setExpandedTitleColor(Color.YELLOW);
+//        mLayoutCollaps = (CollapsingToolbarLayout) findViewById(R.id.layout_collapsing);
+//        mLayoutCollaps.setTitle(getString(R.string.app_name));
+//        mLayoutCollaps.setCollapsedTitleTextColor(Color.WHITE);
+//        mLayoutCollaps.setExpandedTitleColor(Color.YELLOW);
 //        mLayoutCollaps.setContentScrimColor(Color.BLACK);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

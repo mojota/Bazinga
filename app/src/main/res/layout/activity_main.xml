@@ -25,6 +25,7 @@
                     android:layout_height="200dp"
                     app:contentScrim="?attr/colorPrimary"
                     app:expandedTitleMarginStart="20dp"
+                    app:titleTextAppearance="@style/Toolbar_Title"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                     <ImageView
@@ -41,7 +42,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
                         app:layout_collapseMode="pin"
+                        app:layout_scrollFlags="scroll|enterAlways"
                         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                        app:titleTextAppearance="@style/Toolbar_Title"
                         app:theme="@style/ThemeOverlay.AppCompat.Dark">
 
                         <TextView

@@ -1,6 +1,10 @@
 package com.mojota.bazinga;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.v7.graphics.Palette;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +21,12 @@ public class PicListAdapter extends RecyclerView.Adapter<PicListAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        CardView cvPic;
         ImageView ivPic;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            cvPic = (CardView) itemView.findViewById(R.id.cv_pic);
             ivPic = (ImageView) itemView.findViewById(R.id.iv_pic);
         }
     }
@@ -39,6 +45,12 @@ public class PicListAdapter extends RecyclerView.Adapter<PicListAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.ivPic.setImageResource(Constants.PICS[position]);
+        Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), Constants.PICS[position]);
+        Palette palette = Palette.from(bitmap).generate();
+        Palette.Swatch swatch = palette.getDarkVibrantSwatch();
+        if (swatch != null) {
+            holder.cvPic.setCardBackgroundColor(swatch.getRgb());
+        }
     }
 
     @Override
