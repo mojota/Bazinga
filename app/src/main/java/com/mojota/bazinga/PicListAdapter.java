@@ -43,14 +43,21 @@ public class PicListAdapter extends RecyclerView.Adapter<PicListAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.ivPic.setImageResource(Constants.PICS[position]);
         Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), Constants.PICS[position]);
-        Palette palette = Palette.from(bitmap).generate();
-        Palette.Swatch swatch = palette.getDarkVibrantSwatch();
-        if (swatch != null) {
-            holder.cvPic.setCardBackgroundColor(swatch.getRgb());
-        }
+
+        Palette.Builder builder = Palette.from(bitmap);
+        builder.generate(new Palette.PaletteAsyncListener() {
+            @Override
+            public void onGenerated(Palette palette) {
+                Palette.Swatch swatch = palette.getDarkVibrantSwatch();
+                if (swatch != null) {
+                    holder.cvPic.setCardBackgroundColor(swatch.getRgb());
+                }
+            }
+        });
+
     }
 
     @Override
