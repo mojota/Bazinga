@@ -65,6 +65,7 @@
                     android:layout_height="50dp"
                     android:background="@color/color_theme"
                     app:tabGravity="center"
+                    app:tabMode="scrollable"
                     app:tabIndicatorColor="@color/color_google"
                     app:tabIndicatorHeight="5dp"
                     app:tabSelectedTextColor="@color/color_google"

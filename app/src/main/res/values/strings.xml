@@ -2,6 +2,7 @@
     <string name="app_name">Bazinga</string>
 
     <string name="str_volley">volley</string>
+    <string name="str_volley_upload">volley_upload</string>
     <string name="str_textInputLayout">TextInputLayout</string>
     <string name="action_settings">Settings</string>
     <string name="string_data">string_data_get</string>
@@ -11,11 +12,13 @@
     <string name="title_activity_blank">BlankActivity</string>
     <string name="str_no_name">无名氏</string>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="str_tab_one">tab_one</string>
     <string name="str_tab_two">tab_two</string>
     <string name="str_tab_three">tab_three</string>
+    <string name="str_tab_four">tab_four</string>
+    <string name="str_tab_five">tab_five</string>
 
     <string name="str_group_one">group_one</string>
     <string name="str_group_two">group_two</string>
@@ -32,4 +35,6 @@
     <string name="str_username_error">用户名不存在</string>
     <string name="str_password">密码</string>
     <string name="str_password_error">密码错误</string>
+    <string name="title_activity_volley_upload">VolleyUploadActivity</string>
+    <string name="str_upload">上传图片</string>
 </resources>

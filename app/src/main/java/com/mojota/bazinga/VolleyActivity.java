@@ -96,7 +96,6 @@ public class VolleyActivity extends ToolBarActivity implements TabLayout.OnTabSe
                 ToastUtil.showToast("error");
             }
         });
-
         VolleyUtil.addToRequestQueue(request);
     }
 

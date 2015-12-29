@@ -2,6 +2,7 @@
 package com.mojota.bazinga.connect;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
@@ -21,10 +22,13 @@ public class JsonObjectRequest extends Request<JSONObject> {
     private final Listener<JSONObject> mListener;
 
     public JsonObjectRequest(int method, String url, Map<String, String> map,
-                             Listener<JSONObject> listener, ErrorListener errorListener) {
-        super(method, VolleyUtil.addParams(method, url, map), errorListener);
+            Listener<JSONObject> listener, ErrorListener errorListener) {
+        super(method, VolleyUtil.addParams(method, url, VolleyUtil.addParamTk(map)), errorListener);
+        map = VolleyUtil.addParamTk(map);
         mMap = map;
         mListener = listener;
+        setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     }
 
 
@@ -49,6 +53,9 @@ public class JsonObjectRequest extends Request<JSONObject> {
             return Response.error(new ParseError(e));
         } catch (JSONException je) {
             return Response.error(new ParseError(je));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.error(new ParseError(e));
         }
     }
 }

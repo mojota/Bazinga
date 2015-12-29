@@ -99,10 +99,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTabTitleList.add(getString(R.string.str_tab_one));
         mTabTitleList.add(getString(R.string.str_tab_two));
         mTabTitleList.add(getString(R.string.str_tab_three));
+        mTabTitleList.add(getString(R.string.str_tab_four));
+        mTabTitleList.add(getString(R.string.str_tab_five));
         mFragmentList = new ArrayList<>();
         mFragmentList.add(OneFragment.newInstance("", ""));
         mFragmentList.add(TwoFragment.newInstance("", ""));
         mFragmentList.add(ThreeFragment.newInstance("", ""));
+        mFragmentList.add(FourFragment.newInstance("", ""));
+        mFragmentList.add(FiveFragment.newInstance("", ""));
     }
 
     @Override

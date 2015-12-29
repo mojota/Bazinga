@@ -1,6 +1,7 @@
 
 package com.mojota.bazinga.connect;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import java.io.UnsupportedEncodingException;
@@ -58,7 +59,17 @@ public class VolleyUtil {
             }
         }
         return url;
+    }
 
+    /**
+     * 统一添加某参数
+     */
+    public static Map<String, String> addParamTk(Map<String, String> map) {
+        if (map == null) {
+            map = new HashMap<String, String>();
+        }
+        map.put("tk", "");
+        return map;
     }
 
 }

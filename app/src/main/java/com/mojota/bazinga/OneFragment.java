@@ -17,6 +17,7 @@ public class OneFragment extends Fragment implements View.OnClickListener {
 
     private Button btVolley;
     private Button btTextInput;
+    private Button btVolleyUp;
 
     public static OneFragment newInstance(String param1, String param2) {
         OneFragment fragment = new OneFragment();
@@ -37,8 +38,10 @@ public class OneFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_one, container, false);
         btVolley = (Button) view.findViewById(R.id.bt_volley);
+        btVolleyUp = (Button) view.findViewById(R.id.bt_volley_upload);
         btTextInput = (Button) view.findViewById(R.id.bt_textinput);
         btVolley.setOnClickListener(this);
+        btVolleyUp.setOnClickListener(this);
         btTextInput.setOnClickListener(this);
         return view;
     }
@@ -49,6 +52,10 @@ public class OneFragment extends Fragment implements View.OnClickListener {
             case R.id.bt_volley:
                 Intent volleyIntent = new Intent(getActivity(), VolleyActivity.class);
                 startActivity(volleyIntent);
+                break;
+            case R.id.bt_volley_upload:
+                Intent volleyUpIntent = new Intent(getActivity(), VolleyUploadActivity.class);
+                startActivity(volleyUpIntent);
                 break;
             case R.id.bt_textinput:
                 Intent textInputIntent = new Intent(getActivity(), TextInputActivity.class);

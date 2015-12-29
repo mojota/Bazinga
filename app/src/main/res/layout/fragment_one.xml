@@ -13,6 +13,13 @@
         android:text="@string/str_volley" />
 
     <Button
+        android:id="@+id/bt_volley_upload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onVolleyUploadClick"
+        android:text="@string/str_volley_upload" />
+
+    <Button
         android:id="@+id/bt_textinput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
