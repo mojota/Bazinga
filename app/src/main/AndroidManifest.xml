@@ -27,10 +27,6 @@
             android:label="@string/title_activity_base"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".BlankActivity"
-            android:label="@string/title_activity_blank"
-            android:theme="@style/AppTheme"></activity>
-        <activity
             android:name=".VolleyUploadActivity"
             android:label="@string/title_activity_volley_upload"
             android:theme="@style/AppTheme"></activity>
