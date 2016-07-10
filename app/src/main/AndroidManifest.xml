@@ -30,6 +30,10 @@
             android:name=".VolleyUploadActivity"
             android:label="@string/title_activity_volley_upload"
             android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".CustomViewActivity"
+            android:label="@string/title_activity_customview"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
