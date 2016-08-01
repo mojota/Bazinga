@@ -2,9 +2,6 @@ package com.mojota.bazinga;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
@@ -27,7 +24,8 @@ import java.util.Map;
  * Created by mojota on 15-7-31.
  */
 public class VolleyActivity extends ToolBarActivity implements TabLayout.OnTabSelectedListener {
-    private static final String URL = "http://apis.juhe.cn/cook/queryid?key=b954e4feff60d14fe3d32538641c1b36&id=1001";
+    private static final String URL = "http://apis.juhe" +
+            ".cn/cook/queryid?key=b954e4feff60d14fe3d32538641c1b36&id=1001";
     private TextView mTvResult;
     private TabLayout mTabLayout;
 
@@ -37,8 +35,8 @@ public class VolleyActivity extends ToolBarActivity implements TabLayout.OnTabSe
         setContentView(R.layout.activity_volley);
         setTitle(R.string.str_volley);
         mTabLayout = (TabLayout) findViewById(R.id.tablayout);
-        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.string_data),true);
-        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.json_data),false);
+        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.string_data), true);
+        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.json_data), false);
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.json_data_post), false);
         mTabLayout.setOnTabSelectedListener(this);
         mTvResult = (TextView) findViewById(R.id.tv_result);
@@ -46,7 +44,8 @@ public class VolleyActivity extends ToolBarActivity implements TabLayout.OnTabSe
     }
 
     public void onGetStringClick(View view) {
-        String url = "http://api.juheapi.com/japi/toh?key=9ca927c6a05534847004e94d7d850fdb&v=1.0&month=09&day=22";
+        String url = "http://api.juheapi.com/japi/toh?key=9ca927c6a05534847004e94d7d850fdb&v=1" +
+                ".0&month=09&day=22";
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
 
             @Override
@@ -65,7 +64,8 @@ public class VolleyActivity extends ToolBarActivity implements TabLayout.OnTabSe
     }
 
     public void onGetJsonClick(View view) {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL,
+                null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 mTvResult.setText(jsonObject.toString());
@@ -85,7 +85,8 @@ public class VolleyActivity extends ToolBarActivity implements TabLayout.OnTabSe
         Map<String, String> params = new HashMap<String, String>();
         params.put("key", "b954e4feff60d14fe3d32538641c1b36");
         params.put("id", "1001");
-        GsonRequest<CookDetail> request = new GsonRequest<CookDetail>(Request.Method.POST, url, params, CookDetail.class, new Response.Listener<CookDetail>() {
+        GsonRequest<CookDetail> request = new GsonRequest<CookDetail>(Request.Method.POST, url,
+                params, CookDetail.class, new Response.Listener<CookDetail>() {
             @Override
             public void onResponse(CookDetail cookDetail) {
                 mTvResult.setText(cookDetail.toString());

@@ -1,12 +1,19 @@
 package com.mojota.bazinga;
 
-import android.app.Activity;
+import android.animation.ObjectAnimator;
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.ImageView;
+
+import com.mojota.bazinga.utils.Constants;
 
 
 /**
@@ -17,7 +24,7 @@ import android.view.ViewGroup;
  * Use the {@link ThreeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ThreeFragment extends Fragment {
+public class ThreeFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -28,6 +35,11 @@ public class ThreeFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private ImageView iv1;
+    private ImageView iv2;
+    private ImageView iv3;
+    private ImageView iv4;
+    private ImageView iv5;
 
     /**
      * Use this factory method to create a new instance of
@@ -63,8 +75,18 @@ public class ThreeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_three, container, false);
+        View view = inflater.inflate(R.layout.fragment_three, container, false);
+        iv1 = (ImageView) view.findViewById(R.id.iv_1);
+        iv2 = (ImageView) view.findViewById(R.id.iv_2);
+        iv3 = (ImageView) view.findViewById(R.id.iv_3);
+        iv4 = (ImageView) view.findViewById(R.id.iv_4);
+        iv5 = (ImageView) view.findViewById(R.id.iv_5);
+        iv1.setOnClickListener(this);
+        iv2.setOnClickListener(this);
+        iv3.setOnClickListener(this);
+        iv4.setOnClickListener(this);
+        iv5.setOnClickListener(this);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -74,21 +96,35 @@ public class ThreeFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
 
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.iv_1:
+                Intent picIntent = new Intent(getActivity(), PicActivity.class);
+                picIntent.putExtra("resId", R.mipmap.ic_launcher);
+                ActivityCompat.startActivity(getActivity(), picIntent,
+                        ActivityOptions.makeSceneTransitionAnimation(getActivity(), view, "shareIv").toBundle());
+                break;
+            case R.id.iv_2:
+                view.animate().rotation(view.getRotation() + 180f).setDuration(1000).setInterpolator(new AccelerateDecelerateInterpolator()).start();
+                break;
+            case R.id.iv_3:
+                ObjectAnimator.ofFloat(view, "rotation", 180).setDuration(1000).start();
+                break;
+            case R.id.iv_4:
+                break;
+            case R.id.iv_5:
+                break;
+            default:
+                break;
+        }
     }
 
     /**

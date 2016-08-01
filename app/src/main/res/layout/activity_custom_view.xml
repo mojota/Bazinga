@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-  <!--   <com.mojota.bazinga.view.TopBar
+   <com.mojota.bazinga.view.TopBar
          android:id="@+id/top_bar"
          android:layout_width="match_parent"
          android:layout_height="50dp"
@@ -14,7 +14,7 @@
          custom:leftTextColor="@color/color_topbar_title_color"
          custom:mainTitle="@string/str_topbar_title"
          custom:mainTitleTextColor="@color/color_topbar_title_color"
-         custom:mainTitleTextSize="16dp" />-->
+         custom:mainTitleTextSize="6dp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

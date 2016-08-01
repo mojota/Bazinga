@@ -5,6 +5,7 @@
     <string name="str_volley_upload">volley_upload</string>
     <string name="str_textInputLayout">TextInputLayout</string>
     <string name="str_customView">customView</string>
+    <string name="str_anim">animate</string>
     <string name="action_settings">Settings</string>
     <string name="string_data">string_data_get</string>
     <string name="json_data">json_data_get</string>

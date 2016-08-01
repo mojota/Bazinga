@@ -3,6 +3,7 @@ package com.mojota.bazinga;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -13,20 +14,20 @@ import com.mojota.bazinga.view.TopBar;
  */
 public class CustomViewActivity extends AppCompatActivity {
 
-    private static final String TAG = this.getClass().getSimpleName();
+    private final String TAG = getClass().getSimpleName();
     private TopBar mTopBar;
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_view);
-        Log.d(TAG,"onCreate");
-//        mTopBar=(TopBar)findViewById(R.id.top_bar);
-//        mTopBar.setOnTopBarClickListener(new TopBar.TopBarClickListener() {
-//            @Override
-//            public void onLeftClick() {
-//                finish();
-//            }
-//        });
+        Log.d(TAG, "onCreate");
+        mTopBar = (TopBar) findViewById(R.id.top_bar);
+        mTopBar.setOnTopBarClickListener(new TopBar.TopBarClickListener() {
+            @Override
+            public void onLeftClick() {
+                finish();
+            }
+        });
     }
 }

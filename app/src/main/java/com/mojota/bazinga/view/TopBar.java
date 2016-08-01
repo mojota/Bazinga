@@ -36,10 +36,9 @@ public class TopBar extends RelativeLayout {
         super(context, attrs);
 
         //故意使用xml布局文件摆放控件
-        View view = LayoutInflater.from(context).inflate(R.layout.view_top_bar, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.view_top_bar, this);
         mTvTitle = (TextView) view.findViewById(R.id.tv_topbar_title);
         mBtLeft = (Button) view.findViewById(R.id.bt_topbar_left);
-        addView(view);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TopBar);
         mTitle = a.getString(R.styleable.TopBar_mainTitle);

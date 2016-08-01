@@ -19,7 +19,17 @@ import com.mojota.bazinga.utils.Constants;
 public class PicListAdapter extends RecyclerView.Adapter<PicListAdapter.ViewHolder> {
     private final Context mContext;
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    private OnItemClickListener mListener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mListener = listener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         CardView cvPic;
         ImageView ivPic;
@@ -28,6 +38,15 @@ public class PicListAdapter extends RecyclerView.Adapter<PicListAdapter.ViewHold
             super(itemView);
             cvPic = (CardView) itemView.findViewById(R.id.cv_pic);
             ivPic = (ImageView) itemView.findViewById(R.id.iv_pic);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            if (mListener != null) {
+                mListener.onItemClick(view, getAdapterPosition());
+            }
+
         }
     }
 
@@ -51,7 +70,7 @@ public class PicListAdapter extends RecyclerView.Adapter<PicListAdapter.ViewHold
         builder.generate(new Palette.PaletteAsyncListener() {
             @Override
             public void onGenerated(Palette palette) {
-                Palette.Swatch swatch = palette.getDarkVibrantSwatch();
+                Palette.Swatch swatch = palette.getDarkMutedSwatch();
                 if (swatch != null) {
                     holder.cvPic.setCardBackgroundColor(swatch.getRgb());
                 }

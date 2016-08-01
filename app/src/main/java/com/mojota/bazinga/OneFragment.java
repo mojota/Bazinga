@@ -1,6 +1,7 @@
 package com.mojota.bazinga;
 
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,7 @@ public class OneFragment extends Fragment implements View.OnClickListener {
     private Button btTextInput;
     private Button btVolleyUp;
     private Button btCustomView;
+    private Button btAnim;
 
     public static OneFragment newInstance(String param1, String param2) {
         OneFragment fragment = new OneFragment();
@@ -42,10 +44,12 @@ public class OneFragment extends Fragment implements View.OnClickListener {
         btVolleyUp = (Button) view.findViewById(R.id.bt_volley_upload);
         btTextInput = (Button) view.findViewById(R.id.bt_textinput);
         btCustomView = (Button) view.findViewById(R.id.bt_custom_view);
+        btAnim = (Button) view.findViewById(R.id.bt_anim);
         btVolley.setOnClickListener(this);
         btVolleyUp.setOnClickListener(this);
         btTextInput.setOnClickListener(this);
         btCustomView.setOnClickListener(this);
+        btAnim.setOnClickListener(this);
         return view;
     }
 
@@ -67,6 +71,10 @@ public class OneFragment extends Fragment implements View.OnClickListener {
             case R.id.bt_custom_view:
                 Intent customViewIntent = new Intent(getActivity(), CustomViewActivity.class);
                 startActivity(customViewIntent);
+                break;
+            case R.id.bt_anim:
+                Intent animIntent = new Intent(getActivity(), AnimateActivity.class);
+                startActivity(animIntent);
                 break;
         }
 

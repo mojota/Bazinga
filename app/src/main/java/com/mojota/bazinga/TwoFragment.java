@@ -1,13 +1,24 @@
 package com.mojota.bazinga;
 
 
+import android.animation.Animator;
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.ImageView;
+
+import com.mojota.bazinga.utils.Constants;
 
 
 /**
@@ -15,7 +26,7 @@ import android.view.ViewGroup;
  * Use the {@link TwoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TwoFragment extends Fragment {
+public class TwoFragment extends Fragment implements PicListAdapter.OnItemClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -67,10 +78,20 @@ public class TwoFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         mRvList.setLayoutManager(llm);
+        mRvList.setItemAnimator(new DefaultItemAnimator());
         mListAdapter = new PicListAdapter(getActivity());
         mRvList.setAdapter(mListAdapter);
+        mListAdapter.setOnItemClickListener(this);
         return view;
     }
 
 
+    @Override
+    public void onItemClick(View view, int position) {
+        Intent picIntent = new Intent(getActivity(), PicActivity.class);
+        picIntent.putExtra("resId", Constants.PICS[position]);
+        ImageView imageView = (ImageView) view.findViewById(R.id.iv_pic);
+        ActivityCompat.startActivity(getActivity(), picIntent,
+                ActivityOptions.makeSceneTransitionAnimation(getActivity(), imageView, "shareIv").toBundle());
+    }
 }

@@ -6,6 +6,11 @@
     <color name="color_google">#00BCD4</color>
     <color name="color_normal">#3DB3BC</color>
     <color name="color_pressed">#2DB2CA</color>
-    <color name="color_topbar_title_color">#a40b03</color>
-    <color name="color_topbar_left_color">#f7ab05</color>
+    <color name="color_topbar_title_color">#335309</color>
+    <color name="color_topbar_left_color">#51830e</color>
+
+    <color name="color_red">#ff0900</color>
+    <color name="color_orange">#ff7b00</color>
+    <color name="color_yellow">#ffbf00</color>
+    <color name="color_green">#6fff00</color>
 </resources>
