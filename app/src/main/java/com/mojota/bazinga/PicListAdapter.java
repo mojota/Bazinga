@@ -32,6 +32,10 @@ public class PicListAdapter extends RecyclerView.Adapter<PicListAdapter.ViewHold
         mPics = list;
     }
 
+    public List<Integer> getList() {
+        return mPics;
+    }
+
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
     }

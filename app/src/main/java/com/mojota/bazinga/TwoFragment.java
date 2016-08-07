@@ -128,7 +128,7 @@ public class TwoFragment extends Fragment implements PicListAdapter.OnItemClickL
     @Override
     public void onItemClick(View view, int position) {
         Intent picIntent = new Intent(getActivity(), PicActivity.class);
-        picIntent.putExtra("resId", Constants.PICS[position]);
+        picIntent.putExtra("resId", mListAdapter.getList().get(position));
         ImageView imageView = (ImageView) view.findViewById(R.id.iv_pic);
         ActivityCompat.startActivity(getActivity(), picIntent,
                 ActivityOptions.makeSceneTransitionAnimation(getActivity(), imageView, "shareIv")
