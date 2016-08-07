@@ -13,16 +13,23 @@ import android.widget.ImageView;
 
 import com.mojota.bazinga.utils.Constants;
 
+import java.util.List;
+
 /**
  * Created by mojota on 15-10-16.
  */
 public class PicListAdapter extends RecyclerView.Adapter<PicListAdapter.ViewHolder> {
     private final Context mContext;
+    private List<Integer> mPics;
 
     private OnItemClickListener mListener;
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.mListener = listener;
+    }
+
+    public void setList(List list) {
+        mPics = list;
     }
 
     public interface OnItemClickListener {
@@ -50,21 +57,24 @@ public class PicListAdapter extends RecyclerView.Adapter<PicListAdapter.ViewHold
         }
     }
 
-    public PicListAdapter(Context context) {
+    public PicListAdapter(Context context, List<Integer> pics) {
         mContext = context;
+        mPics = pics;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_list_item,
+                parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.ivPic.setImageResource(Constants.PICS[position]);
-        Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), Constants.PICS[position]);
+        holder.ivPic.setImageResource((int) mPics.get(position));
+        Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), (int) mPics.get
+                (position));
 
         Palette.Builder builder = Palette.from(bitmap);
         builder.generate(new Palette.PaletteAsyncListener() {
@@ -81,7 +91,18 @@ public class PicListAdapter extends RecyclerView.Adapter<PicListAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return Constants.PICS.length;
+        return mPics.size();
     }
 
+    public void removeItem(int position) {
+        mPics.remove(position);
+        notifyItemRemoved(position);
+    }
+
+
+    public void addItem(int position) {
+        mPics.add(position, mPics.get(position));
+        notifyItemInserted(position);
+        notifyItemChanged(position + 1);
+    }
 }

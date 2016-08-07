@@ -35,7 +35,7 @@ public class TopBar extends RelativeLayout {
     public TopBar(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        //故意使用xml布局文件摆放控件
+        //使用xml布局文件摆放控件,也可以在代码中创建控件
         View view = LayoutInflater.from(context).inflate(R.layout.view_top_bar, this);
         mTvTitle = (TextView) view.findViewById(R.id.tv_topbar_title);
         mBtLeft = (Button) view.findViewById(R.id.bt_topbar_left);
