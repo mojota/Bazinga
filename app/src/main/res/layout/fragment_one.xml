@@ -33,4 +33,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/str_anim" />
+    <Button
+        android:id="@+id/bt_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/str_viewpager" />
 </LinearLayout>
