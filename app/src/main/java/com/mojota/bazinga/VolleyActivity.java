@@ -10,8 +10,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.mojota.bazinga.connect.GsonRequest;
-import com.mojota.bazinga.connect.VolleyUtil;
+import com.mojota.bazinga.networking.GsonRequest;
+import com.mojota.bazinga.networking.VolleyUtil;
 import com.mojota.bazinga.model.CookDetail;
 import com.mojota.bazinga.utils.ToastUtil;
 

@@ -22,6 +22,7 @@ public class OneFragment extends Fragment implements View.OnClickListener {
     private Button btCustomView;
     private Button btAnim;
     private Button btViewPager;
+    private Button btSpeech;
 
     public static OneFragment newInstance(String param1, String param2) {
         OneFragment fragment = new OneFragment();
@@ -47,12 +48,14 @@ public class OneFragment extends Fragment implements View.OnClickListener {
         btCustomView = (Button) view.findViewById(R.id.bt_custom_view);
         btAnim = (Button) view.findViewById(R.id.bt_anim);
         btViewPager = (Button) view.findViewById(R.id.bt_viewpager);
+        btSpeech = (Button) view.findViewById(R.id.bt_speech);
         btVolley.setOnClickListener(this);
         btVolleyUp.setOnClickListener(this);
         btTextInput.setOnClickListener(this);
         btCustomView.setOnClickListener(this);
         btAnim.setOnClickListener(this);
         btViewPager.setOnClickListener(this);
+        btSpeech.setOnClickListener(this);
         return view;
     }
 
@@ -82,6 +85,9 @@ public class OneFragment extends Fragment implements View.OnClickListener {
             case R.id.bt_viewpager:
                 Intent viewpagerIntent = new Intent(getActivity(), ViewPagerActivity.class);
                 startActivity(viewpagerIntent);
+            case R.id.bt_speech:
+                Intent speechIntent = new Intent(getActivity(), SpeechActivity.class);
+                startActivity(speechIntent);
         }
 
     }

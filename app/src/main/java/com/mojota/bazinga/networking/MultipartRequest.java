@@ -1,9 +1,8 @@
-package com.mojota.bazinga.connect;
+package com.mojota.bazinga.networking;
 
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Request;

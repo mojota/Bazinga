@@ -15,8 +15,8 @@ import android.widget.TextView;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.mojota.bazinga.connect.MultipartRequest;
-import com.mojota.bazinga.connect.VolleyUtil;
+import com.mojota.bazinga.networking.MultipartRequest;
+import com.mojota.bazinga.networking.VolleyUtil;
 import com.mojota.bazinga.utils.ToastUtil;
 
 import java.io.File;

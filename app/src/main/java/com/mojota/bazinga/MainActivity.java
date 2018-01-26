@@ -1,13 +1,16 @@
 package com.mojota.bazinga;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -25,7 +28,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, ThreeFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener,
+        ThreeFragment.OnFragmentInteractionListener {
 
     private NavigationView mNavigation;
     private DrawerLayout mDrawerLayout;
@@ -49,6 +53,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setSupportActionBar(mToolBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
+
+        PackageManager pkgManager = getPackageManager();
+        // 读写 sd card 权限非常重要, android6.0默认禁止的, 建议初始化之前就弹窗让用户赋予该权限
+        boolean sdCardWritePermission = pkgManager.checkPermission(android.Manifest.permission
+                .WRITE_EXTERNAL_STORAGE, getPackageName()) == PackageManager.PERMISSION_GRANTED;
+
+        // read phone state用于获取 imei 设备信息
+        boolean phoneSatePermission = pkgManager.checkPermission(android.Manifest.permission
+                .READ_PHONE_STATE, getPackageName()) == PackageManager.PERMISSION_GRANTED;
+        if (Build.VERSION.SDK_INT >= 23 && !sdCardWritePermission || !phoneSatePermission) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission
+                    .WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_PHONE_STATE}, 0);
+        }
+
         mLayoutMain = (ViewGroup) findViewById(R.id.layout_main);
 
 //        mLayoutCollaps = (CollapsingToolbarLayout) findViewById(R.id.layout_collapsing);
@@ -61,15 +79,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mFAB = (FloatingActionButton) findViewById(R.id.fab);
         mFAB.setOnClickListener(this);
         mNavigation = (NavigationView) findViewById(R.id.view_navigation);
-        mNavigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        mNavigation.setNavigationItemSelectedListener(new NavigationView
+                .OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
+                    case R.id.nav_group_one:
+                        startActivity(new Intent(MainActivity.this, MyWebviewActivity.class));
+                        break;
                     case R.id.group_two_menu_one:
-                        Snackbar.make(mLayoutMain, R.string.str_group_one, Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(mLayoutMain, R.string.str_group_one, Snackbar.LENGTH_SHORT)
+                                .show();
                         break;
                     case R.id.group_two_menu_two:
-                        Snackbar.make(mLayoutMain, R.string.str_group_two_menu_two, Snackbar.LENGTH_LONG).setAction(R.string.cancle, new View.OnClickListener() {
+                        Snackbar.make(mLayoutMain, R.string.str_group_two_menu_two, Snackbar
+                                .LENGTH_LONG).setAction(R.string.cancle, new View.OnClickListener
+                                () {
                             @Override
                             public void onClick(View v) {
 

@@ -1,5 +1,5 @@
 
-package com.mojota.bazinga.connect;
+package com.mojota.bazinga.networking;
 
 import java.util.HashMap;
 import java.util.Map;

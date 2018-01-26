@@ -9,4 +9,6 @@
     <dimen name="grid_spacing">8dp</dimen>
     <dimen name="vp_margin">24dp</dimen>
     <dimen name="vp_padding">-100dp</dimen>
+    <dimen name="menu_height">160dp</dimen>
+    <dimen name="indicator_margin">4dp</dimen>
 </resources>

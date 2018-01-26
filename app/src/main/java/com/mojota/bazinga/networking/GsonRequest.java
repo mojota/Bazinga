@@ -1,5 +1,5 @@
 
-package com.mojota.bazinga.connect;
+package com.mojota.bazinga.networking;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
