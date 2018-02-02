@@ -3,6 +3,7 @@
 
     <string name="str_volley">volley</string>
     <string name="str_volley_upload">volley_upload</string>
+    <string name="str_http">http</string>
     <string name="str_textInputLayout">TextInputLayout</string>
     <string name="str_customView">customView</string>
     <string name="str_anim">animate</string>

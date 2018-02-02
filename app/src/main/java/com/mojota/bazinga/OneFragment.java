@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.mojota.bazinga.view.HttpActivity;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +25,7 @@ public class OneFragment extends Fragment implements View.OnClickListener {
     private Button btAnim;
     private Button btViewPager;
     private Button btSpeech;
+    private Button btHttp;
 
     public static OneFragment newInstance(String param1, String param2) {
         OneFragment fragment = new OneFragment();
@@ -44,6 +47,7 @@ public class OneFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_one, container, false);
         btVolley = (Button) view.findViewById(R.id.bt_volley);
         btVolleyUp = (Button) view.findViewById(R.id.bt_volley_upload);
+        btHttp = (Button) view.findViewById(R.id.bt_http);
         btTextInput = (Button) view.findViewById(R.id.bt_textinput);
         btCustomView = (Button) view.findViewById(R.id.bt_custom_view);
         btAnim = (Button) view.findViewById(R.id.bt_anim);
@@ -51,6 +55,7 @@ public class OneFragment extends Fragment implements View.OnClickListener {
         btSpeech = (Button) view.findViewById(R.id.bt_speech);
         btVolley.setOnClickListener(this);
         btVolleyUp.setOnClickListener(this);
+        btHttp.setOnClickListener(this);
         btTextInput.setOnClickListener(this);
         btCustomView.setOnClickListener(this);
         btAnim.setOnClickListener(this);
@@ -69,6 +74,10 @@ public class OneFragment extends Fragment implements View.OnClickListener {
             case R.id.bt_volley_upload:
                 Intent volleyUpIntent = new Intent(getActivity(), VolleyUploadActivity.class);
                 startActivity(volleyUpIntent);
+                break;
+            case R.id.bt_http:
+                Intent httpIntent = new Intent(getActivity(), HttpActivity.class);
+                startActivity(httpIntent);
                 break;
             case R.id.bt_textinput:
                 Intent textInputIntent = new Intent(getActivity(), TextInputActivity.class);
