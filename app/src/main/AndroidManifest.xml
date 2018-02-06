@@ -62,7 +62,6 @@
         <activity android:name=".ViewPagerActivity"/>
         <activity android:name=".VideoActivity"/>
         <activity android:name=".MyWebviewActivity"/>
-        <activity android:name=".SpeechActivity"/>
         <activity android:name=".view.HttpActivity">
         </activity>
     </application>

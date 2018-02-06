@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="16dp">
 
     <Button
@@ -10,5 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="HttpUrlConnection"/>
+
+    <Button
+        android:id="@+id/bt_broken_transfer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:text="断点续传"/>
 
 </LinearLayout>

@@ -94,9 +94,9 @@ public class OneFragment extends Fragment implements View.OnClickListener {
             case R.id.bt_viewpager:
                 Intent viewpagerIntent = new Intent(getActivity(), ViewPagerActivity.class);
                 startActivity(viewpagerIntent);
-            case R.id.bt_speech:
-                Intent speechIntent = new Intent(getActivity(), SpeechActivity.class);
-                startActivity(speechIntent);
+//            case R.id.bt_speech:
+//                Intent speechIntent = new Intent(getActivity(), SpeechActivity.class);
+//                startActivity(speechIntent);
         }
 
     }
