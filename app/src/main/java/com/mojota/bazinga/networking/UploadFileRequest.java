@@ -1,6 +1,9 @@
 package com.mojota.bazinga.networking;
 
+import android.util.Log;
+
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
@@ -13,8 +16,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
+ * 上传文件
  * Created by jamie on 18-1-26.
  */
 public class UploadFileRequest extends Request<String> {
@@ -23,6 +29,7 @@ public class UploadFileRequest extends Request<String> {
     private final Response.Listener<String> mListener;
     private String mContentType = "application/octet-stream; charset=UTF-8";
     private byte[] mBody;
+    private Map<String, String> mHeaders = new HashMap<>();
 
     /**
      * 传入文件名
@@ -32,6 +39,9 @@ public class UploadFileRequest extends Request<String> {
         super(Method.POST, url, errorListener);
         mListener = listener;
         mBody = getFileByte(fileName);
+        // 设置超时20秒
+        setRetryPolicy(new DefaultRetryPolicy(20000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     }
 
     /**
@@ -42,17 +52,44 @@ public class UploadFileRequest extends Request<String> {
         super(Method.POST, url, errorListener);
         mListener = listener;
         mBody = fileByte;
+        // 设置超时20秒
+        setRetryPolicy(new DefaultRetryPolicy(20000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     }
 
     /**
-     * contentType可设置
+     * 设置ContentType
+     *
+     * @param ct
      */
-    public UploadFileRequest(String contentType, String url, String fileName, Response
-            .Listener<String> listener, Response.ErrorListener errorListener) {
-        super(Method.POST, url, errorListener);
-        mListener = listener;
-        mBody = getFileByte(fileName);
-        mContentType = contentType;
+    public void setContentType(String ct) {
+        mContentType = ct;
+    }
+
+    /**
+     * 设置ContentEncoding
+     *
+     * @param ce
+     */
+    public void setContentEncoding(String ce) {
+        try {
+            mHeaders.put("Content-Encoding", ce);
+        } catch (Throwable e) {
+
+        }
+    }
+
+    /**
+     * 设置header
+     *
+     * @param headers
+     */
+    public void setHeaders(Map<String, String> headers) {
+        try {
+            mHeaders.putAll(headers);
+        } catch (Throwable e) {
+
+        }
     }
 
     /**
@@ -69,12 +106,14 @@ public class UploadFileRequest extends Request<String> {
             bos = new ByteArrayOutputStream();
             bis = new BufferedInputStream(new FileInputStream(file));
             byte[] buffer = new byte[1024];
-            int readLength = 0;
+            int readLength;
             while ((readLength = bis.read(buffer)) != -1) {
                 bos.write(buffer, 0, readLength);
             }
             return bos.toByteArray();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
@@ -91,6 +130,11 @@ public class UploadFileRequest extends Request<String> {
         return null;
     }
 
+    @Override
+    public Map<String, String> getHeaders() throws AuthFailureError {
+        Log.d("UploadFileRequest", " header " + mHeaders.toString());
+        return mHeaders;
+    }
 
     @Override
     public byte[] getBody() throws AuthFailureError {
@@ -104,8 +148,9 @@ public class UploadFileRequest extends Request<String> {
 
     @Override
     protected void deliverResponse(String response) {
-        mListener.onResponse(response);
-
+        if (mListener != null) {
+            mListener.onResponse(response);
+        }
     }
 
     @Override

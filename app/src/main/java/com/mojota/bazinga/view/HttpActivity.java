@@ -1,5 +1,7 @@
 package com.mojota.bazinga.view;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
@@ -9,9 +11,9 @@ import android.widget.Button;
 
 import com.mojota.bazinga.R;
 import com.mojota.bazinga.ToolBarActivity;
+import com.mojota.bazinga.networking.DownloadRequest;
 import com.mojota.bazinga.utils.ToastUtil;
 
-import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -20,7 +22,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -31,8 +32,11 @@ public class HttpActivity extends ToolBarActivity implements View.OnClickListene
     private static final String TAG = "HttpActivity";
     private Button mBtHurlc;
     private Button mBtBrokenTransfer;
+    private Button mBtDownload;
     private int mTotalLength;
     private int mWriteCount;
+    private ProgressDialog mProgressDlg;
+    private DownloadRequest mDownloadRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +44,24 @@ public class HttpActivity extends ToolBarActivity implements View.OnClickListene
         setContentView(R.layout.activity_http);
         mBtHurlc = (Button) findViewById(R.id.bt_hurlc);
         mBtBrokenTransfer = (Button) findViewById(R.id.bt_broken_transfer);
+        mBtDownload = (Button) findViewById(R.id.bt_download);
         mBtHurlc.setOnClickListener(this);
         mBtBrokenTransfer.setOnClickListener(this);
+        mBtDownload.setOnClickListener(this);
+        mProgressDlg = new ProgressDialog(this);
+        mProgressDlg.setTitle("下载中...");
+        mProgressDlg.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        mProgressDlg.setMax(100);
+        mProgressDlg.setIndeterminate(false);
+        mProgressDlg.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                if (mDownloadRequest != null) {
+                    mDownloadRequest.stopDownload();
+                }
+            }
+        });
+        mDownloadRequest = new DownloadRequest();
     }
 
     @Override
@@ -55,7 +75,34 @@ public class HttpActivity extends ToolBarActivity implements View.OnClickListene
                 resumeBrokenTransfer("https://uim.bangcommunity.com/video_explore/big_buck_bunny"
                         + ".mp4");
                 break;
+            case R.id.bt_download:
+                downloadWithProgress();
+                break;
         }
+    }
+
+    private void downloadWithProgress() {
+        mProgressDlg.show();
+        mDownloadRequest.setStateListener(new DownloadRequest.DownloadStateListener() {
+            @Override
+            public void onProgress(int progress) {
+                mProgressDlg.setProgress(progress);
+            }
+
+            @Override
+            public void onSuccess() {
+                ToastUtil.showToast("下载成功");
+                mProgressDlg.dismiss();
+            }
+
+            @Override
+            public void onFailed() {
+                ToastUtil.showToast("下载失败");
+                mProgressDlg.dismiss();
+            }
+        });
+        mDownloadRequest.startDownload("https://uim.bangcommunity" +
+                ".com/video_explore/big_buck_bunny.mp4", getFileFolder()+getFileName(""));
     }
 
     private void urlconnectionRequest(final String url) {
@@ -71,9 +118,9 @@ public class HttpActivity extends ToolBarActivity implements View.OnClickListene
                     conn.setConnectTimeout(10000);
                     //设置从主机读取数据超时
                     conn.setReadTimeout(10000);
-                    // 设置请求方法
+                    // 设置请求方法,默认是GET
                     conn.setRequestMethod("POST");
-                    // Post请求必须设置允许输出 默认false
+                    // Post请求必须设置开启请求体 默认false
                     conn.setDoOutput(true);
                     // 配置是否保持连接,
                     conn.setRequestProperty("Connection", "keep-alive");

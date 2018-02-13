@@ -16,7 +16,14 @@
         android:id="@+id/bt_broken_transfer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:text="断点续传"/>
+        android:text="断点续传"
+        android:textColor="#000000"/>
+
+    <Button
+        android:id="@+id/bt_download"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="下载带进度"
+        android:textColor="#000000"/>
 
 </LinearLayout>
