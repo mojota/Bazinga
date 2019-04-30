@@ -74,7 +74,6 @@ public class FiveFragment extends Fragment implements View.OnClickListener, WebS
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_restart:
-                mWebSocketMgr.reconnect();
                 break;
             case R.id.bt_send:
                 if (!TextUtils.isEmpty(mEtSend.getText())) {

@@ -26,6 +26,8 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.mojota.bazinga.utils.qrcode.QRCodeActivity;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,
@@ -149,7 +151,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab:
-                Snackbar.make(mLayoutMain, "fab clicked", Snackbar.LENGTH_SHORT).show();
+//                Snackbar.make(mLayoutMain, "fab clicked", Snackbar.LENGTH_SHORT).show();
+
+                Intent qr = new Intent(MainActivity.this, QRCodeActivity.class);
+                startActivity(qr);
+
                 break;
             default:
                 break;

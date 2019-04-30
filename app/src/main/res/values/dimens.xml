@@ -11,4 +11,5 @@
     <dimen name="vp_padding">-100dp</dimen>
     <dimen name="menu_height">160dp</dimen>
     <dimen name="indicator_margin">4dp</dimen>
+    <dimen name="head_title_layout_height">48dp</dimen>
 </resources>

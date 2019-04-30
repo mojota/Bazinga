@@ -47,4 +47,5 @@
     <string name="str_topbar_title">自定义TopBar</string>
     <string name="str_topbar_left">返回</string>
     <string name="str_bla">blablabla...</string>
+    <string name="qrcode_not_found">无法识别,请检查图片</string>
 </resources>

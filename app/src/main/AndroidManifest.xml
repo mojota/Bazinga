@@ -13,6 +13,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <!-- 讯飞 start -->
     <!-- 连接网络权限，用于执行云端语音能力 -->
@@ -62,8 +64,8 @@
         <activity android:name=".ViewPagerActivity"/>
         <activity android:name=".VideoActivity"/>
         <activity android:name=".MyWebviewActivity"/>
-        <activity android:name=".view.HttpActivity">
-        </activity>
+        <activity android:name=".view.HttpActivity"/>
+        <activity android:name=".utils.qrcode.QRCodeActivity"/>
     </application>
 
 </manifest>
