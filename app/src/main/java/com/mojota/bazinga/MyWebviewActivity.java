@@ -1,7 +1,9 @@
 package com.mojota.bazinga;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
@@ -71,12 +73,13 @@ public class MyWebviewActivity extends AppCompatActivity implements View.OnClick
         webSetting.setAllowFileAccess(true);
         webSetting.setAppCacheEnabled(false);
         webSetting.setJavaScriptCanOpenWindowsAutomatically(true);
-        webSetting.setUseWideViewPort(true);
-        webSetting.setLoadWithOverviewMode(true);
         webSetting.setCacheMode(WebSettings.LOAD_NO_CACHE);
         webSetting.setSupportZoom(true);
         webSetting.setBuiltInZoomControls(true);
         webSetting.setDisplayZoomControls(false);
+        webSetting.setUseWideViewPort(true);
+        webSetting.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        webSetting.setLoadWithOverviewMode(true);
 //        webSetting.setSupportZoom(false);
 //        webSetting.setBuiltInZoomControls(false);
 //        webSetting.setDisplayZoomControls(false);
@@ -171,8 +174,11 @@ public class MyWebviewActivity extends AppCompatActivity implements View.OnClick
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             mEtUrl.setText(url);
-            view.loadUrl(url);
-            return true;
+            if (!url.contains("http:") && !url.contains("https:")){
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                return true;
+            }
+            return false;
         }
 
         @Override
